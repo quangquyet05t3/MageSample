@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TripFuser_MageSample::magesample" title="Mage Sample"
+             module="TripFuser_MageSample" sortOrder="15"
+             dependsOnModule="TripFuser_MageSample" resource="TripFuser_MageSample::magesample"/>
+        <add id="TripFuser_MageSample::city" title="City"
+             module="TripFuser_MageSample" sortOrder="10" parent="TripFuser_MageSample::magesample"
+             resource="TripFuser_MageSample::city" action="magesample/city" />
+        <add id="TripFuser_MageSample::element" title="Element"
+             module="TripFuser_MageSample" sortOrder="10" parent="TripFuser_MageSample::magesample"
+             resource="TripFuser_MageSample::city" action="magesample/element" />
+    </menu>
+</config>

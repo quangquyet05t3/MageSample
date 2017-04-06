@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="TripFuser\MageSample\Api\Data\CityInterface"
+                type="TripFuser\MageSample\Model\City" />
+
+    <virtualType name="TripFuser\MageSample\Ui\DataProvider\City\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="city" xsi:type="array">
+                    <item name="class" xsi:type="string">TripFuser\MageSample\Ui\DataProvider\City\Modifier\City</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="TripFuser\MageSample\Ui\DataProvider\City\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">TripFuser\MageSample\Ui\DataProvider\City\Modifier\Pool</argument>
+        </arguments>
+    </type>
+</config>
