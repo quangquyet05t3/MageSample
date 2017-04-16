@@ -1,0 +1,27 @@
+<?php /** @var \TripFuser\MageSample\Block\Adminhtml\City\AddEdit $block */ ?>
+<?php /** @var \Magento\Framework\Data\Form $form */ ?>
+<?php $form = $block->getForm(); ?>
+<div id="popup-modal" style="display: none">
+    <?php echo '<form ', $form->serialize($form->getHtmlAttributes()), ' class="tf-admin-form">';?>
+    <div class="clearfix row-gutter">
+        <div class="col-m-6">
+            <?php echo $form->getElement('country_id')->toHtml();?>
+        </div>
+    </div>
+    <div class="clearfix row-gutter">
+        <div class="col-m-6">
+            <?php echo $form->getElement('region_id')->toHtml();?>
+        </div>
+    </div>
+    <div class="clearfix row-gutter">
+        <div class="col-m-6">
+            <?php echo $form->getElement('default_name')->toHtml();?>
+        </div>
+    </div>
+    <div class="clearfix row-gutter">
+        <div class="col-m-6">
+            <?php echo $form->getElement('location')->toHtml();?>
+        </div>
+    </div>
+    <?php echo '</form>';?>
+</div>

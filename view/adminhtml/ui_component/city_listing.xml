@@ -9,7 +9,9 @@
         <!-- define column type -->
         <item name="spinner" xsi:type="string">city_columns</item>
         <!-- Button to add new item -->
-
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="string">TripFuser\MageSample\Block\Adminhtml\City\Button\AddCity</item>
+        </item>
     </argument>
 
     <dataSource name="city_listing_data_source">

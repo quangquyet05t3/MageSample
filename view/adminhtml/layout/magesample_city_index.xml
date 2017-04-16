@@ -3,12 +3,13 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <title>City Management</title>
-
+        <script src="TripFuser_MageSample::js/city-management.js"/>
     </head>
     <body>
         <referenceContainer name="content">
             <uiComponent name="city_listing"/>
-
+            <block class="TripFuser\MageSample\Block\Adminhtml\City\Form" name="form.city"
+                   template="TripFuser_MageSample::city.phtml" />
         </referenceContainer>
     </body>
 </page>
