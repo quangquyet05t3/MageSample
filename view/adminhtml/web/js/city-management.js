@@ -22,9 +22,24 @@ require(
                 text: $.mage.__('Save'),
                 class: 'action-default primary save',
                 click: function () {
-                    alert('Save City');
-                    $('#popup-modal').modal('closeModal');
-
+                    var editForm = jQuery('#city-form');
+                    var formData = editForm.serialize();
+                    //Validate
+                    var pop = this;
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: editForm.attr('action'),
+                        data: formData,
+                        dataType:'json',
+                        success: function (data) {
+                            if(!data.error) {
+                                pop.closeModal();
+                                //reloadGrid();
+                            }else{
+                                alert('error');
+                            }
+                        }
+                    });
                 }
             }]
         };
