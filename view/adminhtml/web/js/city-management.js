@@ -48,5 +48,25 @@ require(
             event.preventDefault();
             $('#popup-modal').modal('openModal');
         });
+        $('#country_id').on('change', function(){
+            var countryId = $(this).val();
+            var callBackUrl = $('#callback-url').val();
+            jQuery.ajax({
+                type: 'POST',
+                url: callBackUrl,
+                data: 'country_id='+countryId,
+                dataType:'json',
+                success: function (data) {
+                    if(!data.error) {
+                        $('#region_id').empty();
+                        for(var i=0;i<data.length;i++){
+                            $('#region_id').append('<option value="'+data[i].value+'">'+data[i].label+'</option>');
+                        }
+                    }else{
+                        alert('error');
+                    }
+                }
+            });
+        })
     }
 );

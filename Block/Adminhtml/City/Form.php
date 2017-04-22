@@ -4,19 +4,23 @@ namespace TripFuser\MageSample\Block\Adminhtml\City;
 use \Magento\Backend\Block\Widget\Form\Generic;
 class Form extends Generic
 {
+    protected $countryFactory;
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
+     * @param \Magento\Directory\Model\CountryFactory $countryFactory
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
+        \Magento\Directory\Model\CountryFactory $countryFactory,
         array $data = []
     ) {
         parent::__construct($context, $registry, $formFactory, $data);
+        $this->countryFactory = $countryFactory;
     }
 
     protected function _prepareForm()
@@ -42,26 +46,18 @@ class Form extends Generic
             $fieldset->addField('city_id', 'hidden', ['name' => 'city_id']);
         }*/
 
+        $listCountry = $this->getListCountry();
         $elements[] = $form->addField('country_id', 'select', array (
             'label' => __('Country'),
             'name' => 'country_id',
             'id' => 'country_id',
-            'options' => [
-                'AD' => __('Andorra'),
-                'AE' => __('United Arab Emirates'),
-                'AF' => __('Afghanistan')
-            ]
+            'values' => $listCountry
         ));
 
         $elements[] = $form->addField('region_id', 'select', array (
             'label' => __('Region'),
             'name' => 'region_id',
-            'id' => 'region_id',
-            'options' => [
-                '1' => __('Alabama'),
-                '2' => __('Alaska'),
-                '3' => __('American Samoa')
-            ]
+            'id' => 'region_id'
         ));
 
         $elements[] = $form->addField(
@@ -76,6 +72,12 @@ class Form extends Generic
             ['name' => 'location', 'label' => __('Location'), 'title' => __('Location'), 'required' => true]
         );
 
+        $elements[] = $form->addField(
+            'callback-url',
+            'hidden',
+            ['value' => $this->getUrl('magesample/city/callback')]
+        );
+
         foreach ($elements as $element) {
             $form->addElementToCollection($element);
         }
@@ -84,4 +86,13 @@ class Form extends Generic
         $this->setForm($form);
         return parent::_prepareForm();
     }
+
+    private function getListCountry() {
+        $countryFactory = $this->countryFactory->create();
+        $list = $countryFactory->getCollection()->toOptionArray();
+        $list[0] = ['value' => '', 'label' => __('-- Please Select --')];
+        return $list;
+    }
+
+
 }

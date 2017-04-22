@@ -26,7 +26,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         parent::_initSelect();
 
         $this->getSelect()
-            ->limit(10);
+            ->limit(20);
         return $this;
     }
 }
