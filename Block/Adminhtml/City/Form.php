@@ -47,6 +47,12 @@ class Form extends Generic
         }*/
 
         $listCountry = $this->getListCountry();
+
+        $elements[] = $form->addField('city_id', 'hidden', array (
+            'name' => 'city_id',
+            'id' => 'city_id'
+        ));
+
         $elements[] = $form->addField('country_id', 'select', array (
             'label' => __('Country'),
             'name' => 'country_id',

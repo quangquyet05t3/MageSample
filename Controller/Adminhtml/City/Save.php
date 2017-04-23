@@ -24,11 +24,16 @@ class Save extends \Magento\Backend\App\Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
-        $resultJson = $this->resultJsonFactory->create();
+
+        $id = $this->getRequest()->getParam('city_id');
         /** @var \TripFuser\MageSample\Model\City $city */
         $city = $this->cityFactory->create();
+        if($id=='') {
+            unset($data['city_id']);
+        }
         $city->setData($data);
+        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+        $resultJson = $this->resultJsonFactory->create();
         try {
             $city->save();
         } catch (\Magento\Framework\Exception\LocalizedException $e) {

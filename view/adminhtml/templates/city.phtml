@@ -3,6 +3,7 @@
 <?php $form = $block->getForm(); ?>
 <div id="popup-modal" style="display: none">
     <?php echo '<form ', $form->serialize($form->getHtmlAttributes()), ' class="tf-admin-form">';?>
+    <?php echo $form->getElement('city_id')->toHtml();?>
     <div class="clearfix row-gutter">
         <div class="col-m-6">
             <?php echo $form->getElement('country_id')->toHtml();?>
@@ -25,4 +26,9 @@
     </div>
     <?php echo $form->getElement('callback-url')->toHtml();?>
     <?php echo '</form>';?>
+</div>
+
+<div id="confirm_init" style="display: none">
+    <span id="action_delete" style="display: none"></span>
+    <?php echo __("Are you sure you want to delete selected item?");?>
 </div>
