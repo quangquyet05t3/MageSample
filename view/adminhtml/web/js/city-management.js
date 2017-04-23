@@ -3,12 +3,13 @@ require(
         'jquery',
         'Magento_Ui/js/modal/modal',
         'mage/mage',
-        'uiRegistry'
+        'uiRegistry',
+        'mage/validation'
     ],
     function(
         $,
         modal,
-        mage,
+        validation,
         registry
         ) {
 
@@ -22,6 +23,10 @@ require(
                 text: $.mage.__('Save'),
                 class: 'action-default primary save',
                 click: function () {
+                    var isValid = $('#city-form').validation() && $('#city-form').validation('isValid');
+                    if(!isValid){
+                        return;
+                    }
                     var editForm = jQuery('#city-form');
                     var formData = editForm.serialize();
                     //Validate
@@ -30,6 +35,7 @@ require(
                         type: 'POST',
                         url: editForm.attr('action'),
                         data: formData,
+                        showLoader: true,
                         dataType:'json',
                         success: function (data) {
                             if(!data.error) {
@@ -64,7 +70,7 @@ require(
                         var action = $('#action_delete').text();
                         $('#confirm_init').modal('closeModal');
                         $.ajax({
-                            showLoader: false,
+                            showLoader: true,
                             url: action,
                             data: '',
                             type: "GET"
@@ -105,7 +111,8 @@ require(
                 success: function (data) {
                     if(!data.error) {
                         $('#region_id').empty();
-                        for(var i=0;i<data.length;i++){
+                        jQuery('#region_id').append('<option value="">Please select a region, state or province.</option>');
+                        for(var i=1;i<data.length;i++){
                             $('#region_id').append('<option value="'+data[i].value+'">'+data[i].label+'</option>');
                         }
                     }else{
@@ -128,7 +135,8 @@ function editCity(url) {
         success:function(data){
             jQuery('#city_id').val(data.city.city_id);
             jQuery('#region_id').empty();
-            for(var i=0;i<data.regions.length;i++){
+            jQuery('#region_id').append('<option value="">Please select a region, state or province.</option>');
+            for(var i=1;i<data.regions.length;i++){
                 jQuery('#region_id').append('<option value="'+data.regions[i].value+'">'+data.regions[i].label+'</option>');
             }
             jQuery('#country_id').val(data.city.country_id);

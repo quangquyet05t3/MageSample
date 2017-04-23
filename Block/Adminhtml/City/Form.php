@@ -57,13 +57,15 @@ class Form extends Generic
             'label' => __('Country'),
             'name' => 'country_id',
             'id' => 'country_id',
-            'values' => $listCountry
+            'values' => $listCountry,
+            'required' => true
         ));
 
         $elements[] = $form->addField('region_id', 'select', array (
             'label' => __('Region'),
             'name' => 'region_id',
-            'id' => 'region_id'
+            'id' => 'region_id',
+            'required' => true
         ));
 
         $elements[] = $form->addField(
