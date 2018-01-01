@@ -10,5 +10,11 @@
                 <schedule>*/2 * * * *</schedule>
             </cron>
         </jobs>
+        <magesample>
+            <general>
+                <enable>1</enable>
+                <display_text>Hello World</display_text>
+            </general>
+        </magesample>
     </default>
 </config>
