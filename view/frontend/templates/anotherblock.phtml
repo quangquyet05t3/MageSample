@@ -1,0 +1,8 @@
+<h1>Another Block</h1>
+<?php
+echo $this->getLayout()
+    ->createBlock('TripFuser\MageSample\Block\CurrentUrl')
+    ->setTemplate('TripFuser_MageSample::currenturl.phtml')
+    ->toHtml();
+
+?>
