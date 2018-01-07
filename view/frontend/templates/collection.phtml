@@ -1,0 +1,9 @@
+<?php
+/** @var \TripFuser\MageSample\Block\Collection $block */
+$productCollection = $block->getProductCollection();
+foreach ($productCollection as $product) {
+    print_r($product->getData());
+    echo "<br>";
+}
+
+?>
